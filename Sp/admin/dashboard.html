@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Admin Panel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">SP ADMIN</div>
+            <nav style="flex: 1;">
+                <a href="dashboard.html" class="nav-item active">Dashboard</a>
+                <a href="inquiries.html" class="nav-item">Inquiries</a>
+                <a href="media.html" class="nav-item">Media Manager</a>
+            </nav>
+            <a href="#" onclick="logout()" class="nav-item"
+                style="color: #ff4d4d; border-top: 1px solid var(--glass-border); margin-top: 20px;">Logout</a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                <h1 class="serif">DASHBOARD <span style="color: var(--primary-gold);">OVERVIEW</span></h1>
+                <div style="color: var(--text-muted);">Welcome back, Admin</div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>TOTAL INQUIRIES</h4>
+                    <div class="value" id="total-inquiries">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>ACTIVE PHOTOS</h4>
+                    <div class="value" id="total-photos">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>PENDING TASKS</h4>
+                    <div class="value">3</div>
+                </div>
+            </div>
+
+            <h2 class="serif" style="margin-bottom: 20px;">RECENT INQUIRIES</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>CLIENT</th>
+                        <th>EVENT DATE</th>
+                        <th>TYPE</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-inquiries-table">
+                    <!-- Loaded via JS -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+            const photos = JSON.parse(localStorage.getItem('portfolio_photos') || '[]');
+
+            document.getElementById('total-inquiries').textContent = inquiries.length;
+            document.getElementById('total-photos').textContent = photos.length;
+
+            const table = document.getElementById('recent-inquiries-table');
+            inquiries.slice(-5).reverse().forEach(inq => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${inq.name}</td>
+                    <td>${inq.date}</td>
+                    <td>${inq.type}</td>
+                    <td><span class="status-badge status-new">NEW</span></td>
+                `;
+                table.appendChild(tr);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | SP Photography</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .login-box {
+            max-width: 400px;
+            margin: 15vh auto;
+            background: var(--surface-color);
+            padding: 50px 40px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .login-box h1 {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid var(--surface-light);
+            color: #fff;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .error-msg {
+            color: #ff4d4d;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box fade-in visible">
+        <div class="logo" style="margin-bottom: 20px;">SP PHOTOGRAPHY</div>
+        <h1 class="serif">ADMIN <span style="color: var(--primary-gold);">LOGIN</span></h1>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label>EMAIL ADDRESS</label>
+                <input type="email" id="email" required placeholder="admin@sp.com">
+            </div>
+            <div class="form-group">
+                <label>PASSWORD</label>
+                <input type="password" id="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">ACCESS DASHBOARD</button>
+            <p id="error" class="error-msg">Invalid credentials. Please try again.</p>
+        </form>
+
+        <p style="margin-top: 20px; color: var(--text-dim);">New here? <a href="signup.html"
+                style="color: var(--primary-gold);">Sign up</a></p>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const result = login(email, password);
+            if (result.success) {
+                window.location.href = '../admin/dashboard.html';
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Packages | SP Photography</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary-gold);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--primary-gold);
+            color: #000;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 3rem;
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-gold);
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .features-list {
+            margin: 30px 0;
+            text-align: left;
+            color: var(--text-muted);
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--primary-gold);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="logo">SP PHOTOGRAPHY</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn btn-outline" style="padding: 8px 20px;">Admin Login</a></li>
+        </ul>
+    </nav>
+
+    <section style="margin-top: 100px;">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 style="font-size: 3.5rem; margin-bottom: 20px;">INVESTMENT & <span
+                        style="color: var(--primary-gold);">PACKAGES</span></h1>
+                <p style="color: var(--text-muted);">Exceptional photography is an investment in your memories. We offer
+                    tiered packages to suit every requirement while maintaining uncompromising quality.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Basic -->
+                <div class="pricing-card fade-in">
+                    <h3 class="serif">BASIC</h3>
+                    <div class="price">₹25,000<span>/ session</span></div>
+                    <ul class="features-list">
+                        <li>3 Hour Photo Shoot</li>
+                        <li>50 Edited High-Res Photos</li>
+                        <li>Digital Gallery Access</li>
+                        <li>1 Portrait Print (12x18)</li>
+                    </ul>
+                    <a href="contact.html?package=basic" class="btn btn-outline" style="width: 100%;">BOOK BASIC</a>
+                </div>
+
+                <!-- Standard -->
+                <div class="pricing-card popular fade-in">
+                    <div class="popular-badge">POPULAR</div>
+                    <h3 class="serif">STANDARD</h3>
+                    <div class="price">₹50,000<span>/ day</span></div>
+                    <ul class="features-list">
+                        <li>Full Day Coverage (8 hrs)</li>
+                        <li>150 Edited High-Res Photos</li>
+                        <li>Cinematic Highlight Reel</li>
+                        <li>Premium Leather Album</li>
+                        <li>Drone Shots (Weather permitting)</li>
+                    </ul>
+                    <a href="contact.html?package=standard" class="btn" style="width: 100%;">BOOK STANDARD</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="pricing-card fade-in">
+                    <h3 class="serif">PREMIUM</h3>
+                    <div class="price">₹1,20,000<span>/ event</span></div>
+                    <ul class="features-list">
+                        <li>2 Full Days Coverage</li>
+                        <li>Unlimited Edited Photos</li>
+                        <li>Express Delivery (48 hrs)</li>
+                        <li>Hand-crafted Deluxe Album</li>
+                        <li>Engagement/Pre-shoot included</li>
+                    </ul>
+                    <a href="contact.html?package=premium" class="btn btn-outline" style="width: 100%;">BOOK PREMIUM</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 50px 5%; border-top: 1px solid var(--glass-border); text-align: center;">
+        <div class="logo" style="margin-bottom: 20px;">SP PHOTOGRAPHY</div>
+        <p style="color: var(--text-dim);">&copy; 2024 SP Photography. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

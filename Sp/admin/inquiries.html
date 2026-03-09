@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiries | Admin Panel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">SP ADMIN</div>
+            <nav style="flex: 1;">
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="inquiries.html" class="nav-item active">Inquiries</a>
+                <a href="media.html" class="nav-item">Media Manager</a>
+            </nav>
+            <a href="#" onclick="logout()" class="nav-item" style="color: #ff4d4d;">Logout</a>
+        </aside>
+
+        <main class="admin-main">
+            <header style="margin-bottom: 40px;">
+                <h1 class="serif">MANAGE <span style="color: var(--primary-gold);">INQUIRIES</span></h1>
+            </header>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>CLIENT</th>
+                        <th>EMAIL/PHONE</th>
+                        <th>TYPE</th>
+                        <th>MESSAGE</th>
+                        <th>STATUS</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody id="inquiries-full-table">
+                    <!-- Loaded via JS -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        function deleteInquiry(id) {
+            let inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+            inquiries = inquiries.filter(iq => iq.id !== id);
+            localStorage.setItem('inquiries', JSON.stringify(inquiries));
+            location.reload();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+            const table = document.getElementById('inquiries-full-table');
+
+            inquiries.reverse().forEach(inq => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${inq.name}</td>
+                    <td>${inq.date}</td>
+                    <td>${inq.type}</td>
+                    <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${inq.message || 'No message'}</td>
+                    <td><span class="status-badge status-new">NEW</span></td>
+                    <td><button onclick="deleteInquiry(${inq.id})" class="btn btn-outline" style="padding: 5px 10px; font-size: 0.7rem;">Delete</button></td>
+                `;
+                table.appendChild(tr);
+            });
+        });
+    </script>
+</body>
+
+</html>
